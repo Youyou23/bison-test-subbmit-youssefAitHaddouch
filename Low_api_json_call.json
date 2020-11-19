@@ -1,0 +1,13 @@
+{
+    "url": "https://s3.us-east-2.amazonaws.com/webiny-cloud-z1",
+    "fields": {
+        "key": "uploads/1jt1ya02x_sample.jpeg",
+        "bucket": "webiny-cloud-z1",
+        "X-Amz-Algorithm": "AWS4-HMAC-SHA256",
+        "X-Amz-Credential": "A..../us-east-2/s3/aws4_request",
+        "X-Amz-Date": "20190309T203725Z",
+        "X-Amz-Security-Token": "FQoGZXIvYXdzEMb//////////...i9kOQF",
+        "Policy": "eyJleHBpcmF0a...UYifV19",
+        "X-Amz-Signature": "05ed426704d359c1c68b1....6caf2f3492e"
+    }
+}
