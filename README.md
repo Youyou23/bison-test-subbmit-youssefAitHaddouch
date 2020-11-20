@@ -23,7 +23,7 @@ API get_upload_url :
 ```
 https://w8ypgk5shf.execute-api.us-east-1.amazonaws.com/dev/get_upload_url
 ```
-Please note that this API return the signed URL in form-data for post request, to be able to test the upload  without manually copy/paste this values, the exported collection contains the Post request sample populated with data from environment, wich updated every time this API(get_upload_url) is called.
+Please note that this API return the signed URL in form-data for post request, to be able to test the upload  without manually copy/paste this values, the exported collection contains the Post request sample populated with data from environment, wich updated every time this API(get_upload_url) is called, and it's also required to add an mp3 file in the key 'file' 
 
 
 API get_song_urls :
