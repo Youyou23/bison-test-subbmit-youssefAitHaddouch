@@ -30,10 +30,16 @@ provider:
 
 # you can add statements to the Lambda function's IAM Role here
   iamRoleStatements:
-    - Effect: "Allow"
+    - Effect: Allow
       Action:
-        - "s3:ListBucket"
-      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
+        - s3:PutObject
+        - s3:GetObject
+        - s3:DeleteObject 
+      Resource: "arn:aws:s3:::${self:resources.Resources.OriginalsMediaFile.Properties.BucketName}/*"
+    - Effect: Allow
+      Action:
+        - s3:ListBucket
+      Resource: "arn:aws:s3:::${self:resources.Resources.OriginalsMediaFile.Properties.BucketName}"
 #    - Effect: "Allow"
 #      Action:
 #        - "s3:PutObject"
@@ -59,27 +65,37 @@ provider:
 
 functions:
   getUploadUrl:
-    handler: api/geet_upload_url.get
+    handler: api/get_upload_url.get
+    environment:
+      BUCKET_NAME: ${file(./config.dev.json):BUCKET_NAME}
+      URL_EXPIRATION_TIME: ${file(./config.dev.json):URLS_EXPIRATION}
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
     events:
       - http:
           path: getUploadUrl
-          method: post
-  getUrlsDownload:
+          method: get
+  getSongUrls:
     handler: api/get_urls_download.get
+    environment:
+      BUCKET_NAME: ${file(./config.dev.json):BUCKET_NAME}
+      URL_EXPIRATION_TIME: ${file(./config.dev.json):URLS_EXPIRATION}
     events:
       - http:
           path: getDownloadUrls
           method: get
   trimMediaFile:
-    handler: services/trim_media_file.trim
+    handler: services/trim_song.trim
+    environment:
+      TRIM_DURATION: ${file(./config.dev.json):TRIM_DURETATION} 
     events:
       - s3:
           bucket: ${self:resources.Resources.OriginalsMediaFile.Properties.BucketName}    
           event: s3:ObjectCreated:*
-          existing: true  
+          existing: true 
+    layers:
+      - {Ref: FfmpegLambdaLayer}  
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
@@ -119,7 +135,7 @@ resources:
     OriginalsMediaFile:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: test-bison-media-files-youssefhaddouch
+        BucketName: ${file(./config.dev.json):BUCKET_NAME}
         CorsConfiguration:
           CorsRules:
             - AllowedHeaders: ['*']

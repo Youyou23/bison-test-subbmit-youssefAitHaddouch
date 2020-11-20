@@ -18,8 +18,7 @@ module.exports.trim = async event => {
         const srcKey    = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, " "));
 
         // if the destination is the same keep it:
-        const dstBucket = srcBucket;
-        const dstKey    = "trimed-version-" + srcKey;
+        const dstKey    = "trimmed-version-" + srcKey;
     
         // for temp saving :
         const source_file_path = '/tmp/'+srcKey;
@@ -44,15 +43,18 @@ module.exports.trim = async event => {
 
         console.log('object loaded to memory',source_file_path);
 
-        //trim the file using ffmpeg command  : ffmpeg -i /tmp/file_example_MP3_1MG.mp3 -t 5 /tmp/trimed-version-file_example_MP3_1MG.mp3
+        //trim the file using ffmpeg command  : take the first 5 s.
+        console.log('converts file using ffmpeg to:',trimmed_file_path)
         spawnSync(
           "/opt/ffmpeg/ffmpeg",
           [
             "-i",
-            `/tmp/${srcKey}`,
-            "-t",
+            source_file_path,
+            "-ss",
+            "0",
+            "-to",
             "5",
-            `/tmp/${dstKey}`
+            trimmed_file_path
           ],
           { stdio: "inherit" }
         );
@@ -61,9 +63,10 @@ module.exports.trim = async event => {
         // add prefix to key so that trimmed versions will be stored within this prefix :
         const s3_destination_key = 'trimmed/'+dstKey;
         await upload_media_to_s3(s3_destination_key,srcBucket,trimmed_file_path);
-        // save splitted files to s3 :
+        
 
-        // remove the origin file from S3:
+        // remove the original file from S3:
+        await s3.deleteObject({ Bucket: srcBucket, Key: srcKey }).promise();
         console.log('file processed with success');
         return;
   } catch (error) {
@@ -125,6 +128,5 @@ const upload_media_to_s3 = (media_key,bucket,source_file) => {
             resolve({});
           }
         });
-
   });
 }

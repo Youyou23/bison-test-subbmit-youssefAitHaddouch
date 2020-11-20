@@ -1,5 +1,5 @@
 {
-    "BUCKET_NAME" : "",
-    "TRIM_DURETATION" : "",
+    "BUCKET_NAME" : "test-bison-media-files-youssefhaddouch",
+    "TRIM_DURETATION" : 5,
     "URLS_EXPIRATION" : 600
 }

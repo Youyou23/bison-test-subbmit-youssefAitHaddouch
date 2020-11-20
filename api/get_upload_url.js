@@ -10,34 +10,31 @@ const headers = {
   "Access-Control-Allow-Credentials": true
 };
 
-module.exports.get = async event => {
 
-  const responseBody = {};
-  const statusCode = 200;
-  
+
+module.exports.get = async event => {
 
   try {
 
-    const requestBody =  JSON.parse(event.body);
+    //get the bucket name from process.env
+    const BUCKET_NAME = process.env.BUCKET_NAME
 
-    // get file name from request
-    const file_name = requestBody.file_name;
+    //get expiration duration for signed URL
+    const EXPIRY_TIME = process.env.URL_EXPIRATION_TIME
 
-    // generate unique_key :
-    const unique_key = uniqid()+'_'+file_name;
+    
+    // generate key to use in sign request :
+    const unique_key = uniqid()+'.mp3';
 
     const presignedPostData = await createPresignedPost({
-      key: unique_key
+      key: unique_key,
+      bucket: BUCKET_NAME,
+      exiry_date :EXPIRY_TIME
     });
-    
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({
-        error: false,
-        data: presignedPostData,
-        message: null
-      })
+      body: JSON.stringify(presignedPostData)
     };
 
   } catch (error) {
@@ -56,13 +53,15 @@ module.exports.get = async event => {
 
 const createPresignedPost = (file_params) => {
   const params = {
-    Expires: 60*10,
-    Bucket: "test-bison-media-files-youssefhaddouch",
+    Expires: file_params.exiry_date,
+    Bucket: file_params.bucket,
     Fields: {
       key  : file_params.key
     }
   };
   return new Promise(async (resolve, reject) => {
+
+    // get presigned Post DATA:
     s3.createPresignedPost(params, (err, data) => {
       if (err) {
         reject(err);
