@@ -9,7 +9,7 @@
 npm install
 ```
 
-### deployment of all the resource required via sls :  
+### deployment of all the resources required via sls :  
 
 * please before deploying to AWS, change the bucket name in config.dev.json
 
@@ -37,4 +37,4 @@ Postman Collection :
 https://w8ypgk5shf.execute-api.us-east-1.amazonaws.com/dev/get_upload_url
 ```
 
-Postman Environemet (required for upload file API testing) ; 
+Postman Environemet (required for upload file API testing) ; postman_environement_export.json
