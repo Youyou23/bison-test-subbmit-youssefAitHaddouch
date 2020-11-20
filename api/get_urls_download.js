@@ -83,7 +83,7 @@ const getPresingedUrlsTrimmedAudio = (bucket,expiration_time,prefix) => {
           });
 
           presigned_object.Key = item.Key;
-          presigned_object.presined_url = presigned_url;
+          presigned_object.presigned_url = presigned_url;
           lis_presigned_urls.push(presigned_object)
         }
 

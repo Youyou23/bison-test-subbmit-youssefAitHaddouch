@@ -1,0 +1,49 @@
+{
+	"id": "aadee96b-0b13-45e1-af62-7610d25199eb",
+	"name": "Bison-test-aws-serverless-mp3-media",
+	"values": [
+		{
+			"key": "test",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "AuthToken",
+			"value": "hyp8khqcehxj.mp3",
+			"enabled": true
+		},
+		{
+			"key": "X-Amz-Date",
+			"value": "20201120T165232Z",
+			"enabled": true
+		},
+		{
+			"key": "key",
+			"value": "48dyukd8khqi4nz0.mp3",
+			"enabled": true
+		},
+		{
+			"key": "Policy",
+			"value": "eyJleHBpcmF0aW9uIjoiMjAyMC0xMS0yMFQxNzowMjozMloiLCJjb25kaXRpb25zIjpbeyJrZXkiOiI0OGR5dWtkOGtocWk0bnowLm1wMyJ9LHsiYnVja2V0IjoidGVzdC1iaXNvbi1tZWRpYS1maWxlcy15b3Vzc2VmaGFkZG91Y2gifSx7IlgtQW16LUFsZ29yaXRobSI6IkFXUzQtSE1BQy1TSEEyNTYifSx7IlgtQW16LUNyZWRlbnRpYWwiOiJBU0lBNDY3MkZVUVZXNVU2VE41NC8yMDIwMTEyMC91cy1lYXN0LTEvczMvYXdzNF9yZXF1ZXN0In0seyJYLUFtei1EYXRlIjoiMjAyMDExMjBUMTY1MjMyWiJ9LHsiWC1BbXotU2VjdXJpdHktVG9rZW4iOiJJUW9KYjNKcFoybHVYMlZqRUFFYUNYVnpMV1ZoYzNRdE1TSklNRVlDSVFESDFpRUMzOEZBZ1Z2VnlqOGpqVGJmdzNRQWlaOFcyMFk3SlhYcGFhRWdoQUloQUs0K2xyak1YYi9NTzBlMkFUWVRYeEh3aGs2alI1Yno3T0pJeE9TZDZUZ3NLdUVCQ0hvUUFCb01PRGt4TVRrek5UQXdOekUxSWd3WlF2UXE1bUNubHlYSFNyOHF2Z0VWWi9tM0lucGcrRVl3VDJ6R0pRNXY4NTJMc2ZkUzJlQi8vK0VFaUF4cEVXM1NYanBtaVdKdlVUSFhhTS9QdEM2aTI0U1lRTVd4ZEFSaWIrQjZjT0U5c3VPRC8rNlZJbUFsQVM3TEZBL3pEL3VUVWw1a2taQjRlT0Z2b080T2tjTzFJY0ZqVVo0ZFJuSTBoYXk1M3c5OHg1ZnNiVmszSXlyMENDMm1FanRmWENiRHlKRW5TM1d4UzZUSUxGMDhCQjBYcnRaRTVKY3JhMVBvSVFNSnV2ZTh3NzJTWXJzTGdFWGlzSmxDdEJFTnI2ZFNZMDNkNDNZVmt2bzNuRWNZTU5EbzMvMEZPdDhCSndkb05xdUVtTmdTSi84UlM3UTltTXpaNXk4QlI2d3dYWE12TERtcUVYamxPUjE3TVI4VDlCU2NySjBGWTdITjRzSVJRbnhvT3ZhZk9zS2wrU2hUR3hiK0FtR2JFcFU1a2VUTTNuZFVuSEVKdkRMWGZWQlRhcUwvSWl5Zzg4QVdYUUtudWdUN0dOSWtnTWljTStzbmEvbEcrc1c2bENMNjdEMVRXRVdIRjh3UlhUUDlKWmk2cnhPRG9RNXdiekVTQkJqYnNGRW5JTkVDdWs1YkJ0TWR6SWhBeUc4Ny9HdzhreDlKcW1aVW5XaUdYZ0pxZDNRTWZ1bmRSdzdPeVM3L3BSQWIxYmEyT2Q5czhpNmoxUWlBQWRFTmZHUE5ISVUxdzdiNVpqTWZ3UT09In1dfQ==",
+			"enabled": true
+		},
+		{
+			"key": "X-Amz-Credential",
+			"value": "ASIA4672FUQVW5U6TN54/20201120/us-east-1/s3/aws4_request",
+			"enabled": true
+		},
+		{
+			"key": "X-Amz-Security-Token",
+			"value": "IQoJb3JpZ2luX2VjEAEaCXVzLWVhc3QtMSJIMEYCIQDH1iEC38FAgVvVyj8jjTbfw3QAiZ8W20Y7JXXpaaEghAIhAK4+lrjMXb/MO0e2ATYTXxHwhk6jR5bz7OJIxOSd6TgsKuEBCHoQABoMODkxMTkzNTAwNzE1IgwZQvQq5mCnlyXHSr8qvgEVZ/m3Inpg+EYwT2zGJQ5v852LsfdS2eB//+EEiAxpEW3SXjpmiWJvUTHXaM/PtC6i24SYQMWxdARib+B6cOE9suOD/+6VImAlAS7LFA/zD/uTUl5kkZB4eOFvoO4OkcO1IcFjUZ4dRnI0hay53w98x5fsbVk3Iyr0CC2mEjtfXCbDyJEnS3WxS6TILF08BB0XrtZE5Jcra1PoIQMJuve8w72SYrsLgEXisJlCtBENr6dSY03d43YVkvo3nEcYMNDo3/0FOt8BJwdoNquEmNgSJ/8RS7Q9mMzZ5y8BR6wwXXMvLDmqEXjlOR17MR8T9BScrJ0FY7HN4sIRQnxoOvafOsKl+ShTGxb+AmGbEpU5keTM3ndUnHEJvDLXfVBTaqL/Iiyg88AWXQKnugT7GNIkgMicM+sna/lG+sW6lCL67D1TWEWHF8wRXTP9JZi6rxODoQ5wbzESBBjbsFEnINECuk5bBtMdzIhAyG87/Gw8kx9JqmZUnWiGXgJqd3QMfundRw7OyS7/pRAb1ba2Od9s8i6j1QiAAdENfGPNHIU1w7b5ZjMfwQ==",
+			"enabled": true
+		},
+		{
+			"key": "X-Amz-Signature",
+			"value": "8c946d170501bfafdc5a5b1270395583a167bddd44452b7d3aa18078b8855c46",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2020-11-20T17:07:35.151Z",
+	"_postman_exported_using": "Postman/7.32.0"
+}
