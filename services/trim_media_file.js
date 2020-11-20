@@ -3,6 +3,7 @@ const AWS = require('aws-sdk');
 const util = require('util');
 const ffmpeg = require('ffmpeg');
 const fs = require('fs');
+const { spawnSync } = require("child_process");
 // get reference to S3 client
 const s3 = new AWS.S3();
 
@@ -39,15 +40,22 @@ module.exports.trim = async event => {
         }
     
         // Download the file from the S3 source bucket to /tmp directory.     
-        try {
-            await load_media_into_memory(srcKey,srcBucket,source_file_path)
-        } catch (error) {
-            console.log(error);
-            return;
-        } 
+        await load_media_into_memory(srcKey,srcBucket,source_file_path);
 
-        //trim the file :
-        await trim_media_file(source_file_path,trimmed_file_path);
+        console.log('object loaded to memory',source_file_path);
+
+        //trim the file using ffmpeg command  : ffmpeg -i /tmp/file_example_MP3_1MG.mp3 -t 5 /tmp/trimed-version-file_example_MP3_1MG.mp3
+        spawnSync(
+          "/opt/ffmpeg/ffmpeg",
+          [
+            "-i",
+            `/tmp/${srcKey}`,
+            "-t",
+            "5",
+            `/tmp/${dstKey}`
+          ],
+          { stdio: "inherit" }
+        );
 
         // load trimmed file to s3 
         // add prefix to key so that trimmed versions will be stored within this prefix :
@@ -62,28 +70,6 @@ module.exports.trim = async event => {
     console.log(`an error occured durring file processing: ${error}`);
     return;
   }
-};
-
-// add function to trim mp3 file:
-const trim_media_file = (source_file,destination_file) => {
-  
-  return new Promise(async (resolve, reject) => {
-    const process = new ffmpeg(source_file);
-		process.then(function (data) {
-			data
-			.setVideoDuration(5)
-			.save(destination_file, function (error, file) {
-				if (!error){
-          console.log('Video file: ' + file);
-          resolve(file);
-        }
-			});
-		}, function (err) {
-      console.log('Error: ' + err);
-      reject(err)
-      return;
-		});
-  });
 };
 
 const load_media_into_memory = (media_key,bucket,destination_file) => {
@@ -106,7 +92,7 @@ const load_media_into_memory = (media_key,bucket,destination_file) => {
           reject(err);
           return;
       }).on('close', function() {
-          console.log('Done.');
+          console.log('Done object loaded.',destination_file);
           resolve({});
       });
   });
@@ -117,7 +103,7 @@ const upload_media_to_s3 = (media_key,bucket,source_file) => {
   return new Promise( async (resolve, reject) =>{
         // call S3 to retrieve upload file to specified bucket
         const uploadParams = {Bucket: bucket, Key: media_key, Body: ''};
-
+        console.log('uploading media to s3 request :', media_key);
         // Configure the file stream and obtain the upload parameters
         var fs = require('fs');
         var fileStream = fs.createReadStream(source_file);
