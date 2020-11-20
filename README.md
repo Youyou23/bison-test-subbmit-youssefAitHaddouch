@@ -37,4 +37,4 @@ Postman Collection :
 https://www.getpostman.com/collections/141fdd3b68f8c6e3db23
 ```
 
-Postman Environemet (required for upload file API testing) ; postman_environement_export.json
+Postman Environemet (required for upload file API testing) : postman_environement_export.json
